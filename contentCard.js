@@ -182,6 +182,7 @@ const contentCard = [
         typeCard: 'yellow',
         content: 'Bạn phải gọi tên tất cả mọi người bằng tên người ngồi bên phải họ (sai 2 cốc)'
     },
+    // Orange
     {
         id: 37,
         typeCard: 'orange',

@@ -414,12 +414,53 @@ const Sprite = PIXI.Sprite;
 const imageTextureBack = PIXI.Texture.from('./assets/back.png');
 
 const image = new Sprite(imageTextureBack);
-image.position.set(600, 230);
+image.position.set(580, 230);
 image.width = 320; 
 image.height = 430;
 app.stage.addChild(image);
 
+// const titleRemainingCard = new Text('Số lá bài còn lại: ', {
+//     fontFamily: 'Playfair Display, serif',
+//     fontSize: 20,
+//     fill: 0xFFFFFF
+// });
+// titleRemainingText.x = 870;
+// titleRemainingText.y = 140;
+// app.stage.addChild(titleRemainingText);
 
+// Hiển thị số lá bài còn lại 
+let remainingCards = contentCards.length;
+
+let remainingText = null;
+
+function displayRemainingCards() {
+    if (remainingText) {
+        app.stage.removeChild(remainingText); 
+    }
+
+    remainingText = new Text(`${remainingCards}`, {
+        fontFamily: 'Playfair Display, serif',
+        fontSize: 20,
+        fill: 0xFFFFFF
+    });
+    remainingText.x = 870;
+    remainingText.y = 140;
+    app.stage.addChild(remainingText);
+    console.log(remainingText);
+};
+
+
+
+// Tao khung button Start
+const buttonStart = new Graphics();
+buttonStart
+
+.beginFill(0xc797a9)
+.drawRect(860, 510, 180, 60)
+.endFill();
+
+app.stage.addChild(buttonStart);
+console.log(buttonStart);
 // Rectangle tạo thẻ
 const Rectangle = PIXI.Rectangle;
 const hitCard = new Rectangle();
@@ -483,6 +524,9 @@ image.on('pointertap', () => {
             delay: flipDuration / 2,
             onComplete: () => {
                 isFlipping = false;
+                
+                remainingCards--;
+                displayRemainingCards();
             }
         });
     }
@@ -511,4 +555,4 @@ function displayText(text) {
     textObj.x = 130
     textObj.y = 100
     image.addChild(textObj);
-};
+};  
